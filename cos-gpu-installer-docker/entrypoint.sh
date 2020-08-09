@@ -495,7 +495,7 @@ configure_cached_installation() {
   info "Configuring cached driver installation"
   update_container_ld_cache
   if ! lsmod | grep -q -w 'nvidia'; then
-    insmod "${NVIDIA_INSTALL_DIR_CONTAINER}/drivers/nvidia.ko"
+    insmod "${NVIDIA_INSTALL_DIR_CONTAINER}/drivers/nvidia.ko" nv_cap_enable_devfs=1
   fi
   if ! lsmod | grep -q -w 'nvidia_uvm'; then
     insmod "${NVIDIA_INSTALL_DIR_CONTAINER}/drivers/nvidia-uvm.ko"
